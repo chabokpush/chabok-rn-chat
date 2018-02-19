@@ -1,4 +1,4 @@
-import './global';
+import 'adp-push-client-rn/global';
 import {AppRegistry} from 'react-native';
 import App from './app/index';
 

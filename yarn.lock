@@ -31,9 +31,22 @@ accepts@~1.3.0:
     mime-types "~2.1.16"
     negotiator "0.6.1"
 
-"adp-push-client-rn@git+ssh://git@gitlab.com:adp-digital/adp-push-client-rn.git", "chabok@git+ssh://git@gitlab.com:adp-digital/adp-push-client-rn.git":
+"adp-push-client-rn@git+ssh://git@gitlab.com:adp-digital/adp-push-client-rn.git":
   version "1.0.0"
-  resolved "git+ssh://git@gitlab.com:adp-digital/adp-push-client-rn.git#bf9c89ae9416da3fa0062d54d39de6ee46a821d8"
+  resolved "git+ssh://git@gitlab.com:adp-digital/adp-push-client-rn.git#c52c346e990cab168c913526043a05cb02934d79"
+  dependencies:
+    axios "^0.17.1"
+    buffer "^5.0.8"
+    es6-symbol "^3.1.1"
+    events "^2.0.0"
+    global "^4.3.2"
+    mqtt "^2.15.1"
+    platform "^1.3.5"
+    process "^0.11.10"
+    react "16.2.0"
+    react-native "0.52.0"
+    react-native-device-info "^0.14.0"
+    shortid "^2.2.8"
 
 ajv@^4.9.1:
   version "4.11.8"
