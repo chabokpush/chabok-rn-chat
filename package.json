@@ -18,11 +18,11 @@
     "postinstall": "rn-nodeify --install fs,dgram,process,path,console --hack"
   },
   "dependencies": {
-    "adp-push-client-rn": "git+ssh://git@gitlab.com:adp-digital/adp-push-client-rn.git",
     "axios": "^0.17.1",
     "babel-plugin-react-native-nodeify-hack": "^1.0.1",
     "buffer": "^5.0.8",
     "chabokpush": "^0.3.4",
+    "chabokpush-rn": "^1.0.2",
     "es6-symbol": "^3.1.1",
     "events": "^2.0.0",
     "fbemitter": "^2.1.1",

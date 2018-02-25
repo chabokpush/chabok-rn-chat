@@ -8,7 +8,7 @@ import {
     Image,
 } from 'react-native';
 import NavBar, {NavButton, NavButtonText, NavTitle} from 'react-native-nav'
-import chabokpush from 'adp-push-client-rn';
+import chabokpush from 'chabokpush-rn';
 import {GiftedChat} from 'react-native-gifted-chat'
 import Prompt from './components/prompt';
 import Register from './components/register';
@@ -47,7 +47,7 @@ export default class App extends React.Component {
             },
             silent: true,
         };
-        this.chabok = new chabokpush.Chabok(authConfig, options);
+        this.chabok = new chabokpush(authConfig, options);
         this.setupChabokListener();
         this.chabok
             .getUserId()
