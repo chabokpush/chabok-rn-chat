@@ -3596,6 +3596,10 @@ react-native-parsed-text@^0.0.19:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-push-notification@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.0.2.tgz#3fa7d654cfd915436597b0dd5ba8b0f898c4b0f5"
+
 react-native-randombytes@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-2.3.0.tgz#3ed6f8a4a803c453d787961047f6b2650d7c7335"

@@ -36,6 +36,7 @@
     "react-native-device-info": "^0.14.0",
     "react-native-gifted-chat": "^0.3.0",
     "react-native-nav": "^2.0.2",
+    "react-native-push-notification": "^3.0.2",
     "readable-stream": "^2.3.3",
     "shortid": "^2.2.8",
     "store2": "^2.6.0",

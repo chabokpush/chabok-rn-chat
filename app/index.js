@@ -15,6 +15,8 @@ import Prompt from './components/prompt';
 import Register from './components/register';
 import Users, {userOnChange} from './components/users';
 
+var PushNotification = require('react-native-push-notification');
+
 export default class App extends React.Component {
     state = {
         chabokStatus: 'offline',
@@ -60,9 +62,24 @@ export default class App extends React.Component {
     }
 
 
+    initPushNotification() {
+        PushNotification.configure({
+            onRegister: function (token) {
+                console.log('TOKEN:', token);
+            },
+            permissions: {
+                alert: true,
+                badge: true,
+                sound: true
+            },
+            popInitialNotification: true,
+            requestPermissions: true,
+        });
+    }
+
     componentDidMount() {
         const {users} = this.state;
-
+        this.initPushNotification();
         this.initChabok();
 
         AppState.addEventListener('change', this._handleAppStateChange);
@@ -144,6 +161,28 @@ export default class App extends React.Component {
         })
     }
 
+
+    sendLocalPushNotification(msg, user) {
+        PushNotification.localNotification({
+            /* Android Only Properties */
+            ticker: "My Notification Ticker", // (optional)
+            autoCancel: true, // (optional) default: true
+            largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+            smallIcon: "ic_notification", // (optional) default: "ic_notification" with fallback for "ic_launcher"
+            bigText: msg.content, // (optional) default: "message" prop
+            color: "red", // (optional) default: system default
+            vibrate: true, // (optional) default: true
+            vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+            group: "group", // (optional) add group to message
+            ongoing: false, // (optional) set whether this is an "ongoing" notification
+            title: `New message from ${user}`, // (optional, for iOS this is only used in apple watch, the title will be the app name on other iOS devices)
+            message: msg.content, // (required)
+            playSound: true, // (optional) default: true
+            soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+        })
+    }
+
+
     setupChabokListener() {
 
         this.chabok.on('connecting', _ => {
@@ -168,6 +207,9 @@ export default class App extends React.Component {
             }
             phone && this.userChange(phone);
 
+            if (this.state.appState.match(/inactive|background/)) {
+                this.sendLocalPushNotification(msg, currentUser);
+            }
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, [
                     {
