@@ -6,6 +6,7 @@ import {
     ActivityIndicator,
     AsyncStorage,
     Image,
+    AppState
 } from 'react-native';
 import NavBar, {NavButton, NavButtonText, NavTitle} from 'react-native-nav'
 import chabokpush from 'chabokpush-rn';
@@ -25,6 +26,7 @@ export default class App extends React.Component {
         users: [],
         modalVisible: false,
         userPromptVisible: false,
+        appState: AppState.currentState
     }
 
     componentWillMount() {
@@ -63,6 +65,8 @@ export default class App extends React.Component {
 
         this.initChabok();
 
+        AppState.addEventListener('change', this._handleAppStateChange);
+
         if (!users.length) {
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, {
@@ -95,6 +99,12 @@ export default class App extends React.Component {
         });
     }
 
+    _handleAppStateChange = (nextAppState) => {
+        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+            console.log('App has come to the foreground!')
+        }
+        this.setState({appState: nextAppState});
+    }
 
     componentWillUpdate(nextProps, nextState) {
         const state = Object.assign({}, this.state, nextState);
