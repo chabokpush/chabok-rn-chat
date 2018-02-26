@@ -8,7 +8,7 @@ import {
     Image,
     AppState
 } from 'react-native';
-import NavBar, {NavButton, NavButtonText, NavTitle} from 'react-native-nav'
+import NavBar, {NavButton, NavTitle} from 'react-native-nav'
 import chabokpush from 'chabokpush-rn';
 import {GiftedChat} from 'react-native-gifted-chat'
 import Prompt from './components/prompt';
