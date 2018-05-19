@@ -52,6 +52,7 @@ export default class App extends React.Component {
             silent: true,
         };
         this.chabok = new chabokpush(authConfig, options);
+        this.initPushNotification();
         this.setupChabokListener();
         this.chabok
             .getUserId()
@@ -64,8 +65,11 @@ export default class App extends React.Component {
 
     initPushNotification() {
         PushNotification.configure({
-            onRegister: function (token) {
-                console.log('TOKEN:', token);
+            onRegister:  (token)=> {
+                console.warn('TOKEN:', token);                                
+                if(Object.keys(token)){
+                    this.chabok.setPushNotificationToken(token.token)
+                }
             },
             permissions: {
                 alert: true,
@@ -79,7 +83,7 @@ export default class App extends React.Component {
 
     componentDidMount() {
         const {users} = this.state;
-        this.initPushNotification();
+    
         this.initChabok();
 
         AppState.addEventListener('change', this._handleAppStateChange);
