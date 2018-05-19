@@ -71,6 +71,8 @@ export default class App extends React.Component {
                     this.chabok.setPushNotificationToken(token.token)
                 }
             },
+            // ANDROID ONLY: (optional) GCM Sender ID.
+            senderID: "339811759516",
             permissions: {
                 alert: true,
                 badge: true,
